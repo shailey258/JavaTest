@@ -67,7 +67,7 @@ pipeline {
 */
         stage('Build') {
             steps {
-                sh 'mvn -B -Dproject.version=$BUILD_VERSION -Dmaven.test.failure.ignore clean package'
+                bat 'mvn -B -Dproject.version=$BUILD_VERSION -Dmaven.test.failure.ignore clean package'
             }
             post {
                 success {
