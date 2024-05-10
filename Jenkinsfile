@@ -95,7 +95,7 @@ pipeline {
             }
         }
 
-        stage('Create tag'){
+       /* stage('Create tag'){
             steps {
                 script {
     
@@ -135,6 +135,6 @@ pipeline {
                     nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: "${DEPLOY_REPO}", packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: "${packaging}", filePath: "${ARTEFACT_NAME}"]], mavenCoordinate: [artifactId: "${artifactId}", groupId: "${groupId}", packaging: "${packaging}", version: "${version}"]]], tagName: "${BUILD_TAG}"
                 }
             }
-        }
+        }*/
     }
 }
