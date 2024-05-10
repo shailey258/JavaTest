@@ -119,7 +119,7 @@ pipeline {
                     //tagData.promote = "no" as String
 
                     writeJSON(file: "${TAG_FILE}", json: tagdata, pretty: 4)
-                    sh 'cat ${TAG_FILE}'
+                    bat 'cat ${TAG_FILE}'
 
                     createTag nexusInstanceId: 'nexus', tagAttributesPath: "${TAG_FILE}", tagName: "${BUILD_TAG}"
 
