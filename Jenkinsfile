@@ -121,7 +121,7 @@ pipeline {
                     writeJSON(file: "${TAG_FILE}", json: tagdata, pretty: 4)
                     //bat 'type ${TAG_FILE}'
 
-                    createTag nexusInstanceId: 'nexus1', tagAttributesPath: "${TAG_FILE}", tagName: "${BUILD_TAG}"
+                    createTag nexusInstanceId: 'nexusrepo1', tagAttributesPath: "${TAG_FILE}", tagName: "${BUILD_TAG}"
 
                     // write the tag name to the build page (Rich Text Publisher plugin)
                     rtp abortedAsStable: false, failedAsStable: false, parserName: 'Confluence', stableText: "Nexus Repository Tag: ${BUILD_TAG}", unstableAsStable: true 
@@ -132,7 +132,7 @@ pipeline {
         stage('Upload to Nexus Repository'){
             steps {
                 script {
-                    nexusPublisher nexusInstanceId: 'nexus1', nexusRepositoryId: "${DEPLOY_REPO}", packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: "${packaging}", filePath: "${ARTEFACT_NAME}"]], mavenCoordinate: [artifactId: "${artifactId}", groupId: "${groupId}", packaging: "${packaging}", version: "${version}"]]], tagName: "${BUILD_TAG}"
+                    nexusPublisher nexusInstanceId: 'nexusrepo1', nexusRepositoryId: "${DEPLOY_REPO}", packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: "${packaging}", filePath: "${ARTEFACT_NAME}"]], mavenCoordinate: [artifactId: "${artifactId}", groupId: "${groupId}", packaging: "${packaging}", version: "${version}"]]], tagName: "${BUILD_TAG}"
                 }
             }
         }
